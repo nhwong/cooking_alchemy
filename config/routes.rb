@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "queries#home"
+  get "/results", :controller => "queries", :action => "results"
+  get "/summary/:id", :controller => "queries", :action => "summary"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
