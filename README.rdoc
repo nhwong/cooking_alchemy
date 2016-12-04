@@ -1,5 +1,9 @@
+Test Log In:
+email: abc@123.com
+username: abc
+password: 123123
 
-
+----------------------------
 Devise Log In:
 * email
 * username
@@ -21,3 +25,13 @@ Recipe:
 Component:
 * recipe_id
 * ingredient
+
+----------------------------
+
+1. Log In
+2. Search
+3. Search Results
+4. Search Summary
+5. Prior Search Results
+6. Recipes Index
+7. Recipes Show
