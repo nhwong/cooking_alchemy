@@ -1,9 +1,11 @@
+## Log In Details
 Test Log In:
 email: abc@123.com
 username: abc
 password: 123123
 
-----------------------------
+## Model Structure
+
 Devise Log In:
 * email
 * username
@@ -26,7 +28,7 @@ Component:
 * recipe_id
 * ingredient
 
-----------------------------
+## Pages
 
 1. Log In
 2. Search
