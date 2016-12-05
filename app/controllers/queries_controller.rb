@@ -38,7 +38,49 @@ class QueriesController < ApplicationController
   end
 
   def summary
-    @query_id = params[:id]
+    words_to_skip =["teaspoon", "tablespoon", "cup",
+      "to", "for", "of",
+      "up", "thats", "and",
+      "or", "cube", "whole",
+      "small", "kosher", "ground",
+      "halved", "room", "temperature",
+      "tenderized", "lots", "oz",
+      "lawrys", "finely", "both",
+      "sliced", "plus", "thinly",
+      "cups", "tablespoons", "teaspoons",
+      "crosswise", "white", "softened",
+      "been", "a", "more"]
+
+    query_ingredients = Ingredient.where(:query_id => params[:id])
+
+    all_ingredient_words = Array.new
+    query_ingredients.each do |ingredient|
+      output = ingredient.ingredient.gsub(/[^a-z0-9\s]/i, '').gsub(/\s+/m, ' ').strip.downcase.split(" ")
+      all_ingredient_words.push(*output)
+    end
+
+    count_by_word = Hash.new
+    all_ingredient_words.each do |word|
+      next if word =~ /\d/
+      next if words_to_skip.include? word
+      if count_by_word.key?(word)
+        count_by_word[word] += 1
+      else
+        count_by_word[word] = 1
+      end
+    end
+
+    @words_by_count = Hash.new
+    count_by_word.each do |key, value|
+      if @words_by_count.key?(value)
+        @words_by_count[value] << key
+      else
+        @words_by_count[value] = [key]
+      end
+    end
+
+    @all_counts = @words_by_count.keys.sort.reverse
+
   end
 
 end

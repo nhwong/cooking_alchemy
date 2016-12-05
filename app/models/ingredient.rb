@@ -1,7 +1,7 @@
 class Ingredient < ActiveRecord::Base
   validates :query_id, :presence => true
   validates :result_id, :presence => true
-  validates :ingredient, :presence => true, :uniqueness => {:scope => :result_id}
+  validates :ingredient, :presence => true, :uniqueness => {:scope => [:result_id, :query_id]}
 
   belongs_to :query
 
