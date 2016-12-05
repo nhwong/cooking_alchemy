@@ -1,5 +1,31 @@
-Hello World!
+<% max_count = @all_counts.max %>
+<% num_counts_to_display = [@all_counts.count, 5].min %>
 
-<%= @all_counts %>
+<h2> Query Summary: Most Common Words </h2>
 
-<%= @words_by_count %>
+<div class="row">
+  <div class="col-md-offset-1 col-md-12">
+    <a href="/"  class="btn btn-primary">New Search</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <table class="table">
+      <tr>
+        <% for i in 1..(num_counts_to_display) %>
+        <th>Count: <%=(max_count) - i%></th>
+        <% end %>
+      </tr>
+      <tr>
+        <% for i in 0..(num_counts_to_display - 1) %>
+        <td><ul>
+          <% @words_by_count[@all_counts[i]].sort.each do |word| %>
+          <li><%= word %></li>
+          <% end %>
+        </ul><td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
