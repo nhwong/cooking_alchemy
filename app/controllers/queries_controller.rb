@@ -83,4 +83,8 @@ class QueriesController < ApplicationController
 
   end
 
+  def queries_index
+    @user_queries = Query.where(:user_id => current_user.id)
+  end
+
 end

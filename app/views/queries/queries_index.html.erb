@@ -1,0 +1,17 @@
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <table class="table">
+      <tr>
+        <th>Query</th>
+        <th>Time (Local)</th>
+      </tr>
+      <% @user_queries.each do |query| %>
+      <tr>
+          <td><%= query.query %></td>
+          <td><%= query.created_at.localtime %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
