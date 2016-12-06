@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/results", :controller => "queries", :action => "results"
   get "/summary/:id", :controller => "queries", :action => "summary"
   get "/queries", :controller => "queries", :action => "queries_index"
+  get "/queries/:query_id", :controller => "queries", :action => "query_results"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

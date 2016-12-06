@@ -8,7 +8,9 @@
       </tr>
       <% @user_queries.each do |query| %>
       <tr>
-          <td><%= query.query %></td>
+          <td>
+            <a href="/queries/<%=query.id%>"><%= query.query %></a>
+          </td>
           <td><%= query.created_at.localtime %></td>
       </tr>
       <% end %>

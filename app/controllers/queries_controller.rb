@@ -87,4 +87,27 @@ class QueriesController < ApplicationController
     @user_queries = Query.where(:user_id => current_user.id)
   end
 
+  def query_results
+    @query = Query.find(params[:query_id])
+    ingredients = Ingredient.where(:query_id => params[:query_id])
+    ingredient_hash = {}
+    ingredients.each do |ingredient|
+      if ingredient_hash.key?(ingredient.result_id)
+        ingredient_hash[ingredient.result_id] << ingredient.ingredient
+      else
+        ingredient_hash[ingredient.result_id] = [ingredient.ingredient]
+      end
+    end
+
+    @ingredient_lists = Array.new
+    ingredient_hash.each do |key, value|
+      @ingredient_lists[key] = value
+    end
+
+    @max_recipe_index = @ingredient_lists.length - 1
+
+    render("results.html.erb")
+
+  end
+
 end
