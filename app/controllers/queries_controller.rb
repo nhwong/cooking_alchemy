@@ -107,7 +107,14 @@ class QueriesController < ApplicationController
     @max_recipe_index = @ingredient_lists.length - 1
 
     render("results.html.erb")
+  end
 
+  def delete_query
+    @query = Query.find(params[:query_id])
+    @ingredients = @query.ingredients
+    @ingredients.destroy_all
+    @query.destroy
+    redirect_to("/queries", :notice => "Query deleted")
   end
 
 end

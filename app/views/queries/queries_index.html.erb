@@ -1,3 +1,4 @@
+<%= @ingredients %>
 
 <div class="row">
   <div class="col-md-offset-1 col-md-10">
@@ -12,6 +13,9 @@
             <a href="/queries/<%=query.id%>"><%= query.query %></a>
           </td>
           <td><%= query.created_at.localtime %></td>
+          <td>
+            <a href="/queries/delete/<%=query.id%>" class="btn btn-danger" rel="nofollow">Delete</a>
+          </td>
       </tr>
       <% end %>
     </table>
