@@ -1,11 +1,10 @@
-<%= @ingredients %>
-
 <div class="row">
   <div class="col-md-offset-1 col-md-10">
-    <table class="table">
+    <table class="table table-striped table-hover">
       <tr>
         <th>Query</th>
         <th>Time (Local)</th>
+        <th>Actions</th>
       </tr>
       <% @user_queries.each do |query| %>
       <tr>
@@ -14,6 +13,7 @@
           </td>
           <td><%= query.created_at.localtime %></td>
           <td>
+            <a href="/queries/<%= query.id %>" class="btn btn-primary">Show</a>
             <a href="/queries/delete/<%=query.id%>" class="btn btn-danger" rel="nofollow">Delete</a>
           </td>
       </tr>
