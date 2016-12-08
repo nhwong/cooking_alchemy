@@ -19,12 +19,14 @@ class QueriesController < ApplicationController
     full_url = food_2_fork_search_url + params[:query]
     food_2_fork_hash = JSON.parse(open(full_url).read)
 
-    @max_recipe_index = [food_2_fork_hash["recipes"].length, 2].min - 1
+    @max_recipe_index = [food_2_fork_hash["recipes"].length, 4].min - 1
     @ingredient_lists = Array.new
+    @max_num_ingredients = 0
     for i in 0..@max_recipe_index
       rId = food_2_fork_hash["recipes"][i]["recipe_id"]
       food_2_fork_recipe_url = "http://food2fork.com/api/get?key=9d4bb2fbc1fb896ab72ed80caa894eb2&rId=" + rId.to_s
       @ingredient_lists << JSON.parse(open(food_2_fork_recipe_url).read)["recipe"]["ingredients"]
+      @max_num_ingredients = [@max_num_ingredients, @ingredient_lists[i].length].max
 
       @ingredient_lists[i].each do |recipe_ingredient|
         ingredient = Ingredient.new
@@ -80,6 +82,14 @@ class QueriesController < ApplicationController
     end
 
     @all_counts = @words_by_count.keys.sort.reverse
+    @max_count = @all_counts.max
+    @num_counts_to_display = [@all_counts.count, 5].min
+    @display_arrays = Array.new
+    @num_rows = 0
+    for i in 0..(@num_counts_to_display - 1)
+       @display_arrays[@all_counts[i]] = @words_by_count[@all_counts[i]]
+       @num_rows = [@num_rows, @display_arrays[@all_counts[i]].length].max
+    end
 
   end
 
@@ -98,10 +108,11 @@ class QueriesController < ApplicationController
         ingredient_hash[ingredient.result_id] = [ingredient.ingredient]
       end
     end
-
+    @max_num_ingredients = 0
     @ingredient_lists = Array.new
     ingredient_hash.each do |key, value|
       @ingredient_lists[key] = value
+      @max_num_ingredients = [@max_num_ingredients, value.length].max
     end
 
     @max_recipe_index = @ingredient_lists.length - 1

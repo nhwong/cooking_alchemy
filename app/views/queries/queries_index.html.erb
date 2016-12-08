@@ -13,7 +13,8 @@
           </td>
           <td><%= query.created_at.localtime %></td>
           <td>
-            <a href="/queries/<%= query.id %>" class="btn btn-primary">Show</a>
+            <a href="/queries/<%= query.id %>" class="btn btn-primary">Results</a>
+            <a href="/summary/<%= query.id %>" class="btn btn-warning">Summary</a>
             <a href="/queries/delete/<%=query.id%>" class="btn btn-danger" rel="nofollow">Delete</a>
           </td>
       </tr>
