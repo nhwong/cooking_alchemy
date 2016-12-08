@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get "/queries/delete/:query_id", :controller => "queries", :action => "delete_query"
 
   get "/recipes", :controller => "recipes", :action => "index"
-  get "/recipes/new", :controller => "recipes", :action => "new"
+  get "/recipes/new/", :controller => "recipes", :action => "new"
+  get "/recipes/new/:max_component_index", :controller => "recipes", :action => "new"
   get "/recipes/:id", :controller => "recipes", :action => "show"
   get "/recipes/:id/edit", :controller => "recipes", :action => "edit"
+  get "/recipes/:id/edit/:extra_components_index", :controller => "recipes", :action => "edit"
 
   post "/update_recipe/:id", :controller => "recipes", :action => "update"
   post "/create_recipe", :controller => "recipes", :action => "create"

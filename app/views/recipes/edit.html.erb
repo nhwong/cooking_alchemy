@@ -29,14 +29,30 @@
             <td>
               <input type="text" id="component" name="<%=component_number%>" placeholder="Component" class="form-control" value="<%=component.ingredient%>">
             </td>
-            <td><a href="/delete_component/<%= component.id %>" class="btn btn-danger" rel="nofollow">Delete</a></td>
+            <td>
+              <a href="/delete_component/<%= component.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+            </td>
           </tr>
           <% component_number += 1 %>
+          <% end %>
+          <% for i in component_number..(component_number + @extra_components_index - 1) %>
+          <tr>
+            <td><label for="component" class="control-label">
+              Component #<%=i%>
+            </label></td>
+            <td>
+              <input type="text" id="component" name="<%=i%>" placeholder="Component" class="form-control">
+            </td>
+            <td>
+              <a href="/recipes/<%=@recipe.id%>/edit/<%=[0, @extra_components_index - 1].min%>" class="btn btn-danger" rel="nofollow">Delete</a>
+            </td>
+          </tr>
           <% end %>
         </table>
       </div>
 
-      <button class="btn btn-success">
+      <a href="/recipes/<%=@recipe.id%>/edit/<%=@extra_components_index + 1%>" class="btn btn-success">Add Component</a>
+      <button class="btn btn-warning">
         Update Recipe
       </button>
       or

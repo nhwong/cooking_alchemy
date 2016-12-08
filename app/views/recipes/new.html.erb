@@ -10,19 +10,35 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <div class="form-group">
-        <label for="dish" class="control-label">
-          Dish
-        </label>
-        <input type="text" id="dish" name="dish" placeholder="Dish" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="component" class="control-label">
-          Component
-        </label>
-        <input type="text" id="component" name="component" placeholder="Component" class="form-control">
+        <table class="table table-striped table-hover">
+          <tr>
+            <td><label for="dish" class="control-label">
+              Dish
+            </label></td>
+            <td>
+              <input type="text" id="dish" name="dish" placeholder="Dish" class="form-control">
+            </td>
+            <td>
+            </td>
+          </tr>
+          <% for i in 0..@max_component_index %>
+          <tr>
+            <td><label for="component" class="control-label">
+              Component #<%=i+1%>
+            </label></td>
+            <td>
+              <input type="text" id="component" name="<%=i%>" placeholder="Component" class="form-control">
+            </td>
+            <td>
+              <a href="/recipes/new/<%=[0, @max_component_index - 1].max%>" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          <% end %>
+        </table>
       </div>
 
-      <button class="btn btn-success">
+      <a href="/recipes/new/<%=@max_component_index + 1%>" class="btn btn-success">Add Component</a>
+      <button class="btn btn-warning">
         Create Recipe
       </button>
       or
