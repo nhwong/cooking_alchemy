@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   get "/recipes/new", :controller => "recipes", :action => "new"
   get "/recipes/:id", :controller => "recipes", :action => "show"
   get "/recipes/:id/edit", :controller => "recipes", :action => "edit"
+
+  post "/update_recipe/:id", :controller => "recipes", :action => "update"
   post "/create_recipe", :controller => "recipes", :action => "create"
+  get "/delete_recipe/:id", :controller => "recipes", :action => "delete"
+
+  get "/delete_component/:id", :controller => "components", :action => "delete"
 
 end

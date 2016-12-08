@@ -1,9 +1,11 @@
-<div class="page-header">
-  <h4>Add Recipe</h4>
+<div class="col-md-offset-1 col-md-10">
+  <div class="page-header">
+    <h4>Add Recipe</h4>
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-offset-1 col-md-10">
     <form action="/create_recipe" method="post">
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -11,7 +13,7 @@
         <label for="dish" class="control-label">
           Dish
         </label>
-        <input type="text" id="dish" name="dish" placeholder="Dish" class="form-control" value="XYZ">
+        <input type="text" id="dish" name="dish" placeholder="Dish" class="form-control">
       </div>
       <div class="form-group">
         <label for="component" class="control-label">

@@ -1,2 +1,24 @@
-Hello World!
-Show Page
+<div class="col-md-offset-1 col-md-10">
+  <div class="page-header">
+    <h4>Recipe for: <%=@recipe.dish%></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <table class="table table-striped table-hover">
+      <th>Components</th>
+      <% @recipe.components.each do |component| %>
+      <tr><td><%= component.ingredient %></td></tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-10">
+    <a href="/recipes" class="btn btn-primary">Back</a>
+    <a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-warning">Edit</a>
+    <a href="/delete_recipe/<%= @recipe.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+  </div>
+</div>
